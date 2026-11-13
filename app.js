@@ -53,11 +53,12 @@ document.querySelectorAll('input[name="fulfillment"]').forEach(r=>r.addEventList
 }));
 document.getElementById("checkout-form").addEventListener("submit",async e=>{
   e.preventDefault();
+  const form = e.currentTarget;
   const msg=document.getElementById("checkout-message"), btn=document.getElementById("submit-order");
   const entries=Object.entries(cart).filter(([,v])=>v.qty>0);
   if(!entries.length){msg.textContent="Tambahkan minimal satu menu ke keranjang.";return;}
   if(!db){msg.textContent="Aplikasi belum terhubung ke database. Lengkapi konfigurasi Supabase terlebih dahulu.";return;}
-  const fd=new FormData(e.currentTarget);
+  const fd=new FormData(form);
   const items=entries.map(([id,v])=>({product_id:id,quantity:v.qty,extra_shot:v.extra}));
   btn.disabled=true;btn.textContent="Mengirim...";
   try{
@@ -74,7 +75,7 @@ document.getElementById("checkout-form").addEventListener("submit",async e=>{
     if(error) throw error;
     const id=data;
     msg.innerHTML=`Pesanan berhasil dikirim. Nomor pesanan: <strong>${id}</strong>. Status pembayaran: menunggu konfirmasi admin. Simpan nomor pesanan ini.`;
-    Object.keys(cart).forEach(k=>delete cart[k]);renderCart();e.currentTarget.reset();setMinDate();
+    Object.keys(cart).forEach(k=>delete cart[k]);renderCart();form.reset();setMinDate();
   }catch(err){msg.textContent="Pesanan belum terkirim: "+(err.message||"Terjadi kesalahan.");}
   finally{btn.disabled=false;btn.textContent="Kirim pesanan";}
 });
