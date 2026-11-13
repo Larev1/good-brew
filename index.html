@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2d211b">
+  <title>GOOD BREW — Order Online</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="config.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">GB</span><span>GOOD BREW<small>KOPI ENAK, HARGA TEMAN</small></span></a>
+    <a class="admin-link" href="admin.html">Admin</a>
+  </header>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">FRESHLY MADE • PRE-ORDER</p>
+      <h1>Good coffee.<br><em>Good day.</em></h1>
+      <p class="hero-copy">Pesan hari ini, kami siapkan untuk besok.</p>
+      <div class="hero-tags"><span>12 OZ</span><span>MADE TO ORDER</span><span>MEDAN</span></div>
+    </section>
+
+    <section class="section-head">
+      <div><p class="eyebrow">OUR MENU</p><h2>Pilih kopi favoritmu</h2></div>
+      <span class="menu-count" id="menu-count">5 MENU</span>
+    </section>
+    <div id="menu-grid" class="menu-grid"></div>
+
+    <section class="order-layout">
+      <section class="panel">
+        <p class="eyebrow">YOUR ORDER</p><h2>Detail pesanan</h2>
+        <div id="cart-items" class="cart-items"><p class="muted">Keranjang masih kosong.</p></div>
+        <div class="total-row"><span>Total</span><strong id="cart-total">Rp0</strong></div>
+      </section>
+
+      <form id="checkout-form" class="panel checkout">
+        <p class="eyebrow">CHECKOUT</p><h2>Data pemesan</h2>
+        <label>Nama lengkap<input name="customer_name" required maxlength="80" placeholder="Nama kamu"></label>
+        <label>Nomor WhatsApp<input name="whatsapp" required inputmode="tel" maxlength="20" placeholder="08xxxxxxxxxx"></label>
+        <fieldset><legend>Metode penerimaan</legend>
+          <label class="choice"><input type="radio" name="fulfillment" value="pickup" checked> Pickup — ambil sendiri</label>
+          <label class="choice"><input type="radio" name="fulfillment" value="delivery"> Delivery — Maximart Yanglim</label>
+          <p class="hint" id="delivery-hint">Delivery hanya ke Maximart Yanglim dan gratis.</p>
+        </fieldset>
+        <div class="two-col">
+          <label>Tanggal siap<input id="pickup-date" name="pickup_date" type="date" required></label>
+          <label>Jam pengambilan<input name="pickup_time" type="time" required value="12:00"></label>
+        </div>
+        <label>Catatan (opsional)<textarea name="notes" rows="2" maxlength="300" placeholder="Contoh: less ice"></textarea></label>
+        <div class="payment-note"><strong>Pembayaran</strong><p>Pesanan diproses setelah pembayaran dikonfirmasi admin. Detail transfer/QRIS akan diberikan oleh admin setelah checkout.</p></div>
+        <button class="primary-btn" id="submit-order" type="submit">Kirim pesanan</button>
+        <p class="tiny muted">Dengan memesan, kamu menyetujui bahwa pesanan ini adalah pre-order.</p>
+        <div id="checkout-message" role="status" aria-live="polite"></div>
+      </form>
+    </section>
+  </main>
+  <footer><strong>GOOD BREW</strong><span>Made with care in Medan.</span></footer>
+</body>
+</html>
