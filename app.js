@@ -75,7 +75,16 @@ document.getElementById("checkout-form").addEventListener("submit",async e=>{
     if(error) throw error;
     const id=data;
     msg.innerHTML=`Pesanan berhasil dikirim. Nomor pesanan: <strong>${id}</strong>. Status pembayaran: menunggu konfirmasi admin. Simpan nomor pesanan ini.`;
-    Object.keys(cart).forEach(k=>delete cart[k]);renderCart();form.reset();setMinDate();
+
+Object.keys(cart).forEach(k=>delete cart[k]);
+renderCart();
+
+const checkoutForm = document.getElementById("checkout-form");
+if (checkoutForm) {
+  checkoutForm.reset();
+}
+
+setMinDate();
   }catch(err){msg.textContent="Pesanan belum terkirim: "+(err.message||"Terjadi kesalahan.");}
   finally{btn.disabled=false;btn.textContent="Kirim pesanan";}
 });
