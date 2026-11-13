@@ -80,8 +80,8 @@ Object.keys(cart).forEach(k=>delete cart[k]);
 renderCart();
 
 const checkoutForm = document.getElementById("checkout-form");
-if (checkoutForm) {
-  checkoutForm.reset();
+if (checkoutForm instanceof HTMLFormElement) {
+  HTMLFormElement.prototype.reset.call(checkoutForm);
 }
 
 setMinDate();
