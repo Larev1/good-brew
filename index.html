@@ -16,11 +16,13 @@
       <form id="checkout-form" class="panel checkout">
         <p class="eyebrow">CHECKOUT</p><h2>Jadwal pesanan</h2>
         <div id="customer-session" class="account-strip">Memeriksa akun...</div>
+        <label>Nama lengkap penerima<input name="customer_name" required minlength="2" maxlength="80" autocomplete="name" placeholder="Nama sesuai pesanan"></label>
+        <label>Nomor WhatsApp<input name="whatsapp" required minlength="8" maxlength="20" inputmode="tel" placeholder="08xxxxxxxxxx"></label>
         <fieldset><legend>Metode penerimaan</legend><label class="choice"><input type="radio" name="fulfillment" value="pickup" checked> Pickup — ambil sendiri</label><label class="choice"><input type="radio" name="fulfillment" value="delivery"> Delivery — Maximart Yanglim</label><p class="hint" id="delivery-hint">Delivery hanya ke Maximart Yanglim dan gratis.</p></fieldset>
         <div class="two-col"><label>Tanggal siap<input id="pickup-date" name="pickup_date" type="date" required></label><label>Jam pengambilan<input name="pickup_time" type="time" required value="12:00"></label></div>
         <label>Catatan (opsional)<textarea name="notes" rows="2" maxlength="300" placeholder="Contoh: less ice"></textarea></label>
-        <div class="payment-note"><strong>Pembayaran</strong><p>Pesanan diproses setelah pembayaran dikonfirmasi admin. Detail pembayaran diberikan admin setelah checkout.</p></div>
-        <button class="primary-btn" id="submit-order" type="submit">Kirim pesanan</button><p class="tiny muted">Dengan memesan, kamu menyetujui bahwa pesanan ini adalah pre-order.</p><div id="checkout-message" role="status" aria-live="polite"></div>
+        <div class="payment-note"><strong>Pembayaran QRIS</strong><p>Setelah pesanan dibuat, scan QRIS statis GOOD BREW dan kirim bukti pembayaran ke WhatsApp admin. Pesanan diproses setelah admin memverifikasi pembayaran.</p></div>
+        <button class="primary-btn" id="submit-order" type="submit">Kirim pesanan</button><p class="tiny muted">Dengan memesan, kamu menyetujui bahwa pesanan ini adalah pre-order.</p><div id="checkout-message" role="status" aria-live="polite"></div><section id="payment-panel" class="payment-panel" hidden></section>
       </form>
     </section>
   </main><footer><strong>GOOD BREW</strong><span>Made with care in Medan.</span></footer>
